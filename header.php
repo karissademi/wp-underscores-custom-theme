@@ -29,7 +29,7 @@
             <div class="container">              
                     <nav class="blog-nav pull-right" role="navigation">                            
                       <a class="blog-nav-item" href="#">Login</a>
-                      <a class="blog-nav-item" href="<?php wp_registration_url() ?>">Register</a>
+                      <a class="blog-nav-item" href="<?php echo get_page_link(1717); ?>">Register</a>
                       <a class="blog-nav-item" href="#">Profile</a>                  
                    </nav><!-- #site-navigation -->
             </div><!--#container-->
