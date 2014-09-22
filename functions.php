@@ -159,3 +159,23 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/*
+ * Add Custom Class Used to Validate User Input
+ */
+require get_template_directory() . '/classes/Validate.php';
+
+
+function custom_process_input() {
+    
+    /*
+     * Require Controller Handling User Input
+     */
+    require get_template_directory() . '/controllers/validateController.php';
+
+}
+
+/*
+ * Avtion Hook That Is Triggered Upon POST/GET Requests
+ */
+add_action('admin_post_process_input', 'custom_process_input');

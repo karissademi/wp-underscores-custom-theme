@@ -6,6 +6,12 @@
  *
  * @package assignement
  */
+
+/*
+ * Call Global Object Validator to Have Asscess to Errors
+ */
+global $validator;
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -29,7 +35,7 @@
             <div class="container">              
                     <nav class="blog-nav pull-right" role="navigation">                            
                       <a class="blog-nav-item" href="#">Login</a>
-                      <a class="blog-nav-item" href="<?php echo get_page_link(1717); ?>">Register</a>
+                      <a class="blog-nav-item" href="<?php echo get_page_link(1707); ?>">Register</a>
                       <a class="blog-nav-item" href="#">Profile</a>                  
                    </nav><!-- #site-navigation -->
             </div><!--#container-->
@@ -47,4 +53,17 @@
                     </a>
                 <?php endif; // End header image check. ?>
                 
+            </div>
+            <div class="alert-info">               
+                <?php 
+                /*
+                 * Display Validation Errors in a Message Box
+                 */                                
+                if ( isset ($validator) ) {
+                     foreach($validator->errors as $error) {
+                         echo $error. '</br>';
+                     }
+                }                       
+                               
+                ?>
             </div>
