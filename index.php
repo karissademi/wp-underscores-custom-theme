@@ -38,8 +38,12 @@ get_header(); ?>
                             <!-- Check If There Are More Posts to Display. If Yes, Show Link for More  -->
                             <?php   if( $popular_query->found_posts > NUM_OF_POSTS) : ?>
               
-                            <a href="<?php custom_get_page_permalink('popular') ?>" class="pull-right"><small>See More</small></a>
-                               
+                            <a href="<?php echo custom_get_page_permalink('popular') ?>" class="pull-right"><small>See More</small></a>
+                            
+                            <?php  
+                                
+                            ?>
+                            
                             <?php endif; ?>
                             
                         </h2>
@@ -82,7 +86,7 @@ get_header(); ?>
                             <!-- Check If There Are More Posts to Display. If Yes, Show Link for More  -->
                             <?php   if( $popular_query->found_posts > NUM_OF_POSTS) : ?>
               
-                            <a href="<?php custom_get_page_permalink('latest') ?>" class="pull-right"><small>See More</small></a>
+                            <a href="<?php echo custom_get_page_permalink('latest') ?>" class="pull-right"><small>See More</small></a>
                                
                             <?php endif; ?>
                             
@@ -140,7 +144,7 @@ get_header(); ?>
                     <!-- Check If There Are More Posts to Display. If Yes, Show Link for More  -->
                     <?php   if( count($custom_results) > NUM_OF_POSTS) : ?>
 
-                    <a href="<?php custom_get_page_permalink('expire') ?>" class="pull-right"><small>See More</small></a>
+                    <a href="<?php echo custom_get_page_permalink('expire') ?>" class="pull-right"><small>See More</small></a>
 
                     <?php endif; ?>
                             

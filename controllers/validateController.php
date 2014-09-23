@@ -1,11 +1,8 @@
 <?php
-
-    
 /*
- * Check If Form is Submitted by Checking the Hidden Field 'checker'
+ * Check If Form Registratiion Form is Submitted
  */
-if ( isset( $_POST['checker'] ) ) {
-        
+if ( isset( $_POST['registerForm'] ) ) {
     /*
      * Make the Object Global to be Accessible from Anywhere
      */
@@ -53,27 +50,29 @@ if ( isset( $_POST['checker'] ) ) {
     /*
      * Insert New User If Validation Successful
      */
-    if ( $validator->success == TRUE ) {
+    if ( ! in_array(FALSE, $validator->success) ) {
         $userData = array(
             'user_login' => $inputUsername,
             'user_email' => $inputEmail,
             'user_pass' => $inputPassword1,
-        );
+        );     
         
-        wp_insert_user($userData);
+        if ( wp_insert_user($userData) ) {
+            
+            $newUser = get_user_by('email', $inputEmail);    
+        
+            update_user_meta($newUser->ID, 'Location', $inputLocation);
+            update_user_meta($newUser->ID, 'DOB', $inputDOB);
+            update_user_meta($newUser->ID, 'Gender', $inputGender);
+            
+            $validator->errors[] = 'User created';
+        }
         
         /*
          * Extract Data for Updating User Meta Data
          */
-        $newUser = get_user_by('email', $inputEmail);    
-        
-        echo $newUser->ID;
-    }
 
-    /*
-     * Render Template
-     */
-    get_template_part('page', 'register');
+    } 
     
 
 }

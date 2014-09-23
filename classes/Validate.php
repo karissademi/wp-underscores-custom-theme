@@ -5,23 +5,26 @@
  */
 
 class Validate {
-    public $errors = array();
-    public $success = FALSE;    
-           
-    
+    public $custom_messages = array();
+    public $success = array(
+        'requiredCheck' => FALSE,
+        'passCheck' => FALSE,
+        
+    );
+            
     /*
      * Check If Required Fields Are Filled In
      */
     public function validateRequired($input, $requiredFields) {
         foreach ($input as $key => $value) {
             if ( in_array($key, $requiredFields) && empty($value)) {
-                $this->errors[] =  $key . ' is required';
+                $this->custom_messages[] =  $key . ' is required';           
             }        
         }
-        if ( !empty( $this->errors ) ) {
-            $this->success = FALSE;
+        if ( ! empty( $this->errors ) ) {
+            $this->success['requiredCheck'] = FALSE;
         } else {
-            $this->success = TRUE;
+            $this->success['requiredCheck'] = TRUE;
         }
         
         return $this->success;
@@ -32,10 +35,10 @@ class Validate {
      */
     public function validatePassword($password1, $password2) {
         if ( $password1 != $password2 ) {            
-            $this->errors[] =  'passwords must match';
-            $this->success = FALSE;
+            $this->custom_messages[] =  'passwords must match';
+            $this->success['passCheck'] = FALSE;
         } else {
-            $this->success = TRUE;
+            $this->success['passCheck'] = TRUE;
         }
         
         return $this->success;

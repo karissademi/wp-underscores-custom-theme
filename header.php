@@ -34,9 +34,13 @@ global $validator;
 	<div class="blog-masthead">
             <div class="container">              
                     <nav class="blog-nav pull-right" role="navigation">                            
-                      <a class="blog-nav-item" href="#">Login</a>
+                      <?php if ( ! is_user_logged_in() ) : ?>
+                      <a class="blog-nav-item" href="<?php echo get_page_link(1711); ?>">Login</a>
                       <a class="blog-nav-item" href="<?php echo get_page_link(1707); ?>">Register</a>
-                      <a class="blog-nav-item" href="#">Profile</a>                  
+                      <?php else : ?>
+                      <a class="blog-nav-item" href="#">My profile</a>     
+                      <a class="blog-nav-item" href="<?php echo wp_logout_url(); ?>">Logout</a> 
+                      <?php endif; ?>
                    </nav><!-- #site-navigation -->
             </div><!--#container-->
         </div><!-- #masthead -->
@@ -54,16 +58,12 @@ global $validator;
                 <?php endif; // End header image check. ?>
                 
             </div>
-            <div class="alert-info">               
+            <div class="alert-info">    
                 <?php 
-                /*
-                 * Display Validation Errors in a Message Box
-                 */                                
-                if ( isset ($validator) ) {
-                     foreach($validator->errors as $error) {
-                         echo $error. '</br>';
-                     }
-                }                       
-                               
-                ?>
+                if ( isset($validator) ) {
+                    foreach ($validator->custom_messages as $message) {
+                        echo $message . '</br>';
+                    }                                       
+                }         
+                ?>               
             </div>

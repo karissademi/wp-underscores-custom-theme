@@ -160,22 +160,70 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
-/*
- * Add Custom Class Used to Validate User Input
+/**
+ * Require Custom Class Used to Validate User Input
  */
 require get_template_directory() . '/classes/Validate.php';
 
+/**
+ * Require Validate Controller
+ */
+require get_template_directory() . '/controllers/validateController.php';
 
-function custom_process_input() {
-    
-    /*
-     * Require Controller Handling User Input
-     */
-    require get_template_directory() . '/controllers/validateController.php';
 
+
+
+function pu_login_failed( $user ) {
+  	// check what page the login attempt is coming from
+  	$referrer = $_SERVER['HTTP_REFERER'];
+
+  	// check that were not on the default login page
+	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') && $user!=null ) {
+		// make sure we don't already have a failed login attempt
+		if ( !strstr($referrer, '?login=failed' )) {
+			// Redirect to the login page and append a querystring of login failed
+	    	wp_redirect( $referrer . '?login=failed');
+	    } else {
+	      	wp_redirect( $referrer );
+	    }
+
+	    exit;
+	}
 }
+/*
+ * Hook to Failed Login Attempt
+ */
+add_action( 'wp_login_failed', 'pu_login_failed' );
 
 /*
- * Avtion Hook That Is Triggered Upon POST/GET Requests
+ * Prevent Redirect to Buil-in WP Login Page When Empty Login And Password Are Provided
  */
-add_action('admin_post_process_input', 'custom_process_input');
+function pu_blank_login( $user ){
+  	// check what page the login attempt is coming from
+        global $validator;
+
+        $referrer = $_SERVER['HTTP_REFERER'];
+
+  	$error = false;
+
+  	if($_POST['log'] == '' || $_POST['pwd'] == '')
+  	{
+  		$error = true;
+  	}
+
+  	// check that were not on the default login page
+  	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') && $error ) {
+
+  		// make sure we don't already have a failed login attempt
+    	if ( !strstr($referrer, '?login=failed') ) {
+    		// Redirect to the login page and append a querystring of login failed
+        	wp_redirect( $referrer . '?login=failed' );
+      	} else {
+        	wp_redirect( $referrer );
+      	}
+
+    exit;
+
+  	}
+}
+add_action( 'authenticate', 'pu_blank_login');

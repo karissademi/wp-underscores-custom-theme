@@ -1,11 +1,14 @@
 <?php get_header(); ?>
 
+
+
+
 <div class="row">
     <div class="col-sm-4">
         
     </div>
     <div class="col-sm-4">
-        <form role="form" method="post" action="<?php echo site_url() . '/wp-admin/admin-post.php'; ?>">
+        <form role="form" method="post" action="<?php get_template_directory_uri() . '/controllers/validateController.php' ?>">
           <div class="form-group">
             <label for="InputUsername">Username*</label>
             <input type="text" class="form-control" id="InputUsername" placeholder="Enter username" name="inputUsername">
@@ -54,9 +57,7 @@
             <div class="clearfix"></div>
           <div class="form-group pull-left">
               <!-- Unique Hidden Field of This Form -->
-              <input type="hidden" name="checker" />
-              <!-- Hidden Value that Triggers custom_process_input Function from functions.php -->
-              <input type="hidden" name="action" value="process_input" />
+              <input type="hidden" name="registerForm" />
               <input type="submit" class="btn btn-default" value="Submit">
           </div>
 
