@@ -1,11 +1,5 @@
 <?php
 /**
- * assignement functions and definitions
- *
- * @package assignement
- */
-
-/*
  * Make Custom Tags Available Anywhere
  */
 include_once get_template_directory() . '/inc/custom-template-tags.php';
@@ -98,34 +92,46 @@ add_action( 'widgets_init', 'assignement_widgets_init' );
  */
 function assignement_scripts() {
     
-        /*
+        /**
          * Implement Boostrap
          */       
         wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css' );
+
+        /**
+         * Implement style from Bootstrap blog
+         */
+        wp_enqueue_style( 'blog-css', get_template_directory_uri() . '/css/blog.css' );        
         
+        /**
+         * Implement custom css
+         */
         wp_enqueue_style( 'custom-css', get_template_directory_uri() . '/css/custom.css' );
         
-        /*
-         * Blog CSS From Bootstrap
+
+        /**
+         * Implement styles for jQuery UI plugins
          */
-        wp_enqueue_style( 'blog-css', get_template_directory_uri() . '/css/blog.css' );
-    
-	/*
-         * Remove the default sylesheet
-         */
-        //wp_enqueue_style( 'assignement-style', get_stylesheet_uri(), array('bootstrap') );
+        wp_enqueue_style( 'jQueryUIstyle', get_template_directory_uri() . '/css/jQueryUIstyle.css' );
         
-        /*
+        /**
          * Implement jQuery
          */      
         wp_enqueue_script( 'jQuery', get_template_directory_uri() . '/js/jquery-2.1.1.min.js', array(), '20140920', true );
         
-        /*
-         * Implement Custom Script Dependent on jQuery
+        /**
+         * Implement jQuery UI plugins
          */
-        wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/js/custom.js', array('jQuery'), '20140920', true );
+        wp_enqueue_script( 'jQueryUI', get_template_directory_uri() . '/js/jquery-ui.js', array('jQuery'), '20140920', true );
+        
+        /**
+         * Implement custom script dependent on jQuery
+         */
+        wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/js/custom.js', array('jQuery', 'jQueryUI'), '20140920', true );
 
-	wp_enqueue_script( 'assignement-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	/**
+         * Undescores.me scripts
+         */
+        wp_enqueue_script( 'assignement-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'assignement-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
@@ -161,69 +167,11 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
- * Require Custom Class Used to Validate User Input
+ * Load custom class that handles user operations
  */
-require get_template_directory() . '/classes/Validate.php';
+require get_template_directory() . '/classes/User.php';
 
 /**
- * Require Validate Controller
+ * Load controller for the User class
  */
-require get_template_directory() . '/controllers/validateController.php';
-
-
-
-
-function pu_login_failed( $user ) {
-  	// check what page the login attempt is coming from
-  	$referrer = $_SERVER['HTTP_REFERER'];
-
-  	// check that were not on the default login page
-	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') && $user!=null ) {
-		// make sure we don't already have a failed login attempt
-		if ( !strstr($referrer, '?login=failed' )) {
-			// Redirect to the login page and append a querystring of login failed
-	    	wp_redirect( $referrer . '?login=failed');
-	    } else {
-	      	wp_redirect( $referrer );
-	    }
-
-	    exit;
-	}
-}
-/*
- * Hook to Failed Login Attempt
- */
-add_action( 'wp_login_failed', 'pu_login_failed' );
-
-/*
- * Prevent Redirect to Buil-in WP Login Page When Empty Login And Password Are Provided
- */
-function pu_blank_login( $user ){
-  	// check what page the login attempt is coming from
-        global $validator;
-
-        $referrer = $_SERVER['HTTP_REFERER'];
-
-  	$error = false;
-
-  	if($_POST['log'] == '' || $_POST['pwd'] == '')
-  	{
-  		$error = true;
-  	}
-
-  	// check that were not on the default login page
-  	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') && $error ) {
-
-  		// make sure we don't already have a failed login attempt
-    	if ( !strstr($referrer, '?login=failed') ) {
-    		// Redirect to the login page and append a querystring of login failed
-        	wp_redirect( $referrer . '?login=failed' );
-      	} else {
-        	wp_redirect( $referrer );
-      	}
-
-    exit;
-
-  	}
-}
-add_action( 'authenticate', 'pu_blank_login');
+require get_template_directory() . '/controllers/userController.php';

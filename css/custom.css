@@ -1,0 +1,31 @@
+.profile-box {
+    overflow: hidden;
+    width: 600px;
+    margin: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.profile-buttons {
+    overflow: hidden;
+    width: 600px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.under-button {
+    margin-right: 10px;
+}
+
+.profile-button {
+    margin-top: 85px;
+}
+
+.narrow {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.custom-message {
+    padding: 10px;
+}

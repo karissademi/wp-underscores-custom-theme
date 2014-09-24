@@ -8,7 +8,7 @@
         
     </div>
     <div class="col-sm-4">
-        <form role="form" method="post" action="<?php get_template_directory_uri() . '/controllers/validateController.php' ?>">
+        <form role="form" method="post" action="<?php get_template_directory_uri() . '/controllers/userController.php' ?>">
           <div class="form-group">
             <label for="InputUsername">Username*</label>
             <input type="text" class="form-control" id="InputUsername" placeholder="Enter username" name="inputUsername">
@@ -32,7 +32,6 @@
           <div class="form-group pull-left">
             <label for="InputDOB">Date of Birth</label>
             <select class="form-control" id="datePicker" name="inputDOB">
-
             </select>
           </div>
           <div class="form-group pull-right">
