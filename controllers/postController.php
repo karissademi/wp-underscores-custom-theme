@@ -37,8 +37,9 @@ if ( isset($_POST['newPost']) ) {
     /**
      * Display a success message
      */
+       
     global $validator;
-    if ( $new_post_id ) {
+    if ( $new_post_id ) {        
         $validator->custom_messages[] = 'Post added';
     }
 }    

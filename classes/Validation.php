@@ -3,7 +3,7 @@
 /*
  * Class that handles validation of user input
  */
-class User {
+class Validation {
     public $custom_messages = array();
     public $success = array(
         'requiredCheck' => false,

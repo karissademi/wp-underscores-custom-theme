@@ -41,7 +41,7 @@ if ( isset( $_POST['registerForm'] ) ) {
     /**
      * Declate the Validator Object
      */
-    $validator = new User();
+    $validator = new Validation();
 
     $validator->validateRequired($inputData, $requiredFields);
     

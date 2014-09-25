@@ -2,9 +2,9 @@
 
 <?php
 
-
-
-
+/**
+ * Voting script
+ */
 if ( isset($_GET) ) {
     $current_post_id = get_the_ID();
     $voteCount = get_post_meta($current_post_id, 'Votes', true);

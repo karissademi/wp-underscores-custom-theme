@@ -87,6 +87,18 @@ function assignement_widgets_init() {
 }
 add_action( 'widgets_init', 'assignement_widgets_init' );
 
+
+/**
+ * Redirect to homepage upon logout
+ */
+function go_home(){
+  wp_redirect( home_url() );
+  exit();
+}
+
+add_action('wp_logout','go_home');
+
+
 /**
  * Enqueue scripts and styles.
  */
@@ -167,9 +179,9 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
- * Load custom class that handles user operations
+ * Load custom class that handles validation
  */
-require get_template_directory() . '/classes/User.php';
+require get_template_directory() . '/classes/Validation.php';
 
 /**
  * Load a controller to handle user operations
@@ -180,4 +192,3 @@ require get_template_directory() . '/controllers/userController.php';
  * Load a controller to handle posting
  */
 require get_template_directory() . '/controllers/postController.php';
-

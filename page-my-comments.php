@@ -13,7 +13,6 @@ $args = array(
 //The Query
 $comments_query = new WP_Comment_Query( $args );
 $comments = $comments_query->query( $args );
-
 ?>
 <div class="row">
     <div class="col-sm-8 blog-main">
@@ -23,7 +22,7 @@ $comments = $comments_query->query( $args );
             <?php
             if($comments) {
                 foreach($comments as $comment) {
-                    echo '<p>' . $comment->comment_ID . '</p>';
+                    echo '<p>' . $comment->comment_content . '</p>';
                 }
             }
             ?>        			
