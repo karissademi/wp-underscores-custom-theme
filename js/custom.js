@@ -17,4 +17,11 @@ $(document).ready(function() {
     
     $("#chooseDate").datepicker();
     
+    $(".profile-button").click(function() {
+        var $this = $(this);
+        $("input:disabled").prop('disabled', false);
+        $this.text('Save profile');
+
+    });//end click
+    
 });

@@ -175,3 +175,4 @@ require get_template_directory() . '/classes/User.php';
  * Load controller for the User class
  */
 require get_template_directory() . '/controllers/userController.php';
+
