@@ -172,7 +172,12 @@ require get_template_directory() . '/inc/jetpack.php';
 require get_template_directory() . '/classes/User.php';
 
 /**
- * Load controller for the User class
+ * Load a controller to handle user operations
  */
 require get_template_directory() . '/controllers/userController.php';
+
+/**
+ * Load a controller to handle posting
+ */
+require get_template_directory() . '/controllers/postController.php';
 

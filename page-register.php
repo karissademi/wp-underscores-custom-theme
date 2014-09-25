@@ -1,8 +1,5 @@
 <?php get_header(); ?>
 
-
-
-
 <div class="row">
     <div class="col-sm-4">
         

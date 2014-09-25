@@ -103,3 +103,13 @@ if ( isset($_POST['login_form']) ) {
         }
     }       
 }
+
+if ( isset($_POST['updateProfile'])) {
+    $user_id = $_POST['updateProfile'];
+    $newLocation = sanitize_text_field($_POST['newLocation']);
+    $newGender = sanitize_text_field($_POST['newGender']);
+    $newDOB = sanitize_text_field($_POST['newDOB']);
+    update_user_meta($user_id, 'Location', $newLocation);
+    update_user_meta($user_id, 'Gender', $newGender);
+    update_user_meta($user_id, 'DOB', $newDOB);
+}

@@ -23,13 +23,11 @@ $(document).ready(function() {
     /**
      * Dynamic profile settings
      */
-    $("#profile-form").submit(function( event ) {
-        var $this = $(this);
-        event.preventDefault();
+    $("#profile-form").submit(function(ev) {
+        ev.preventDefault();
         $("input:disabled").prop('disabled', false);
-        $("input:submit").attr('value', 'Save');
-        $this.unbind('submit');
-        
-    });//end click
+        $(".profile-update").attr('Value', 'Save changes');
+        $(this).unbind('submit');
+        }); //end submit           
     
-});
+});//end ready
