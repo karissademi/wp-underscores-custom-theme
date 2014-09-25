@@ -1,6 +1,6 @@
 $(document).ready(function() {
     
-    /*
+    /**
      * Loop That Populates Date Picker in page-register.php
      */
     var currentYear = new Date().getFullYear();
@@ -11,17 +11,25 @@ $(document).ready(function() {
         $('#datePicker').append(
                     $("<option></option>").attr("value", initialYear).text(initialYear)     
                 );
-        initialYear++;
-        
+        initialYear++;    
     }
     
+    /**
+     * Implement a date picker in an add post page
+     */
     $("#chooseDate").datepicker();
     
-    $(".profile-button").click(function() {
+    
+    /**
+     * Dynamic profile settings
+     */
+    $("#profile-form").submit(function( event ) {
         var $this = $(this);
+        event.preventDefault();
         $("input:disabled").prop('disabled', false);
-        $this.text('Save profile');
-
+        $("input:submit").attr('value', 'Save');
+        $this.unbind('submit');
+        
     });//end click
     
 });
