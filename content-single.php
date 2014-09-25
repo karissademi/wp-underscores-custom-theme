@@ -2,24 +2,25 @@
 
 <?php
 
+$current_post_id = get_the_ID();
+
 /**
  * Voting script
  */
-if ( isset($_GET) ) {
-    $current_post_id = get_the_ID();
+if ( isset($_GET['vote']) ) {
+    
     $voteCount = get_post_meta($current_post_id, 'Votes', true);
     
-    if ($_GET['action'] == 'up') {
-        $newCount = $voteCount + 1;
+    if ($_GET['vote'] == 'up') {
+        $newCount = ++$voteCount;
         update_post_meta($current_post_id, 'Votes', $newCount);
-        unset($_GET['action']);
 
     } 
 
-    if ($_GET['action'] == 'down') {
-        $newCount = $voteCount -1;
+    if ($_GET['vote'] == 'down') {
+        $newCount = --$voteCount;
         update_post_meta($current_post_id, 'Votes', $newCount);
-        unset($_GET['action']);
+
     }    
 }
 
@@ -37,10 +38,10 @@ $voteCount = get_post_meta($current_post_id, 'Votes', true);
                     </div>
                     <div class="clearfix"></div>
                     <div class="glyphicon glyphicon-arrow-up pull-right">
-                        <a href="<?php echo get_the_permalink() . '&action=up'; ?>" class="">VoteUp</a>
+                        <a href="<?php echo get_the_permalink() . '&vote=up'; ?>" class="">VoteUp</a>
                     </div>
                     <div class="glyphicon glyphicon-arrow-down pull-right">
-                        <a href="<?php echo get_the_permalink() . '&action=down'; ?>" class="">VoteDown</a>
+                        <a href="<?php echo get_the_permalink() . '&vote=down'; ?>" class="">VoteDown</a>
                     </div>                    
                     <div class="entry-meta">
                         <?php assignement_posted_on(); ?>

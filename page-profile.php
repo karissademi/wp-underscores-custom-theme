@@ -48,10 +48,10 @@ $current_user_id = get_current_user_id();
     </div><!-- #profile-info --> 
 </div><!-- #profile-box -->
 <div class="profile-box">
-    <div class="text-center">
-        <a href="<?php echo custom_get_page_permalink('add-post'); ?>" class="btn btn-default pull-left under-button">Add post</a>    
-        <a href="<?php echo custom_get_page_permalink('my-posts'); ?>" class="btn btn-default pull-left under-button">My posts</a>
-        <a href="<?php echo custom_get_page_permalink('my-comments'); ?>" class="btn btn-default pull-left under-button">My comments</a>
+    <div class="btn-group btn-group-justified">
+        <a href="<?php echo custom_get_page_permalink('add-post'); ?>" class="btn btn-default">Add post</a>    
+        <a href="<?php echo custom_get_page_permalink('my-posts'); ?>" class="btn btn-default">My posts</a>
+        <a href="<?php echo custom_get_page_permalink('my-comments'); ?>" class="btn btn-default">My comments</a>
     </div>
 </div>
 

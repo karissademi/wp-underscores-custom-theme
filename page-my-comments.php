@@ -22,7 +22,10 @@ $comments = $comments_query->query( $args );
             <?php
             if($comments) {
                 foreach($comments as $comment) {
-                    echo '<p>' . $comment->comment_content . '</p>';
+                    $commentedPost = get_post($comment->comment_post_ID);
+                    echo '<p>Post tite: ' . $commentedPost->post_title . '</p>';
+                    echo '<p>My comment: <em>' . $comment->comment_content . '</em></p>';
+                    echo '<hr />';
                 }
             }
             ?>        			
