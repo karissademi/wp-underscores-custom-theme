@@ -11,6 +11,7 @@
  * Call Global Object Validator to Have Asscess to Validation Messages
  */
 global $validator;
+global $newPost;
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -57,7 +58,7 @@ global $validator;
                 foreach ($validator->custom_messages as $message) {
                     echo '<p class="custom-message">' . $message . '</p>';
                 }                                       
-            }         
+            }   
             ?>               
         </div><!-- alert-info -->
 

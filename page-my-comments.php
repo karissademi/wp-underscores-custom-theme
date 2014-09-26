@@ -18,22 +18,20 @@ $comments = $comments_query->query( $args );
     <div class="col-sm-8 blog-main">
         <div class="post-list">
             <h2>My comments</h2>
-            <!-- Start the Loop -->
-            <?php
-            if($comments) {
-                foreach($comments as $comment) {
-                    $commentedPost = get_post($comment->comment_post_ID);
-                    echo '<p>Post tite: ' . $commentedPost->post_title . '</p>';
-                    echo '<p>My comment: <em>' . $comment->comment_content . '</em></p>';
-                    echo '<hr />';
-                }
-            }
-            ?>        			
+        <!-- Start the Loop, display links to posts and and comments -->
+        <?php if($comments) : ?>
+            <?php foreach($comments as $comment) : $commentedPost = get_post($comment->comment_post_ID)?>
+            <p>Post title: <a href="<?php echo get_permalink($commentedPost); ?>"><?php echo $commentedPost->post_title; ?></a></p>
+            <p>My comment: <em><?php echo $comment->comment_content; ?></em></p>
+            <hr/>
+            <?php endforeach; ?>
+        <?php endif; ?>
+            
+            
         </div>        
     </div>
     
 <?php get_sidebar(); ?>
-    
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer();

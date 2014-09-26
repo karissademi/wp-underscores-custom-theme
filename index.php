@@ -22,9 +22,11 @@ get_header(); ?>
 
         <?php
         $args = array(
-          'posts_per_page' => NUM_OF_POSTS,
-          'orderby' => 'comment_count',
-          'order' => 'DESC'
+            'posts_per_page' => NUM_OF_POSTS,
+            'orderby' => 'comment_count',
+            'order' => 'DESC',
+            'ignore_sticky_posts' => true,
+            
         );
         $popular_query = new WP_Query( $args );
         ?>
@@ -64,9 +66,10 @@ get_header(); ?>
          * Second Query: Latest Posts
          */
         $args = array(
-          'posts_per_page' => NUM_OF_POSTS,
-          'orderby' => 'date',
-          'order' => 'DESC'
+            'posts_per_page' => NUM_OF_POSTS,
+            'orderby' => 'date',
+            'order' => 'DESC',
+            
         );
         $date_query = new WP_Query( $args );
         ?>

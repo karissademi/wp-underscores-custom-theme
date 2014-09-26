@@ -1,5 +1,8 @@
 <?php
 if ( isset($_POST['newPost']) ) {
+    
+    global $newPost;
+    
     /**
      * Sanitize user input
      */
@@ -8,7 +11,7 @@ if ( isset($_POST['newPost']) ) {
     $tag1 = sanitize_text_field($_POST['tag1']);
     $tag2 = sanitize_text_field($_POST['tag2']);
     $tag3 = sanitize_text_field($_POST['tag3']);
-    $postExpire = sanitize_text_field($_POST['exDate']);
+    $postExpire = sanitize_text_field($_POST['exDate']); 
     
     /*
      * Convert expiration date into a proper format
@@ -29,17 +32,13 @@ if ( isset($_POST['newPost']) ) {
     );
     
     /**
-     * Add expiration date
+     * Add post if there are no empty fields
      */
-    $new_post_id = wp_insert_post( $postData ); 
-    update_post_meta($new_post_id, 'pw_spe_expiration', $expire);
-    
-    /**
-     * Display a success message
-     */
-       
-    global $validator;
-    if ( $new_post_id ) {        
-        $validator->custom_messages[] = 'Post added';
+    if (in_array('', $postData)) {
+        $validator->custom_messages[] = 'All fields are required';
+    } else {
+        $new_post_id = wp_insert_post( $postData );
+        update_post_meta($new_post_id, 'pw_spe_expiration', $expire);
+        $validator->custom_messages[] = 'Post added';       
     }
 }    

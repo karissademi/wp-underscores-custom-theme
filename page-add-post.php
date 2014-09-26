@@ -24,10 +24,6 @@
   <div class="form-group"> 
     <label for="inputTag1" class="col-sm-2 control-label"></label>
     <div class="col-sm-10">    
-        <select class="form-control pull-left narrow" name="source" >
-            <option>Link</option>                
-            <option>Paper issue</option>
-        </select>
         <input type="text" class="form-control pull-left narrow" placeholder="Pick an expiration date" name="exDate" id="chooseDate">
         </div> 
     </div>

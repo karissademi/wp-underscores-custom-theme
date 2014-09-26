@@ -88,6 +88,15 @@ function assignement_widgets_init() {
 add_action( 'widgets_init', 'assignement_widgets_init' );
 
 
+function remove_admin_bar() {
+    if( ! current_user_can('administrator') && ! is_admin()) {
+        show_admin_bar(false);
+    }
+}
+
+add_action('after_setup_theme', 'remove_admin_bar');
+
+
 /**
  * Redirect to homepage upon logout
  */
