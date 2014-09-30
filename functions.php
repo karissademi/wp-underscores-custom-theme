@@ -188,6 +188,11 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
+ * Load the voting script
+ */
+require get_template_directory() . '/inc/voting-script.php';
+
+/**
  * Load custom class that handles validation
  */
 require get_template_directory() . '/classes/Validation.php';

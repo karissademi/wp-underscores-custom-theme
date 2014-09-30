@@ -1,32 +1,8 @@
 <?php get_header(); ?>
 
-<?php
+<?php $current_post_id = get_the_ID(); ?>
 
-$current_post_id = get_the_ID();
-
-/**
- * Voting script
- */
-if ( isset($_GET['vote']) ) {
-    
-    $voteCount = get_post_meta($current_post_id, 'Votes', true);
-    
-    if ($_GET['vote'] == 'up') {
-        $newCount = ++$voteCount;
-        update_post_meta($current_post_id, 'Votes', $newCount);
-
-    } 
-
-    if ($_GET['vote'] == 'down') {
-        $newCount = --$voteCount;
-        update_post_meta($current_post_id, 'Votes', $newCount);
-
-    }    
-}
-
-$voteCount = get_post_meta($current_post_id, 'Votes', true);
-
-?>
+<?php $voteCount = get_post_meta($current_post_id, 'Votes', true); ?>
 
 <div class="row">
     <div class="col-sm-8">
@@ -37,12 +13,16 @@ $voteCount = get_post_meta($current_post_id, 'Votes', true);
                         Vote count: <?php echo $voteCount; ?>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="glyphicon glyphicon-arrow-up pull-right">
-                        <a href="<?php echo get_the_permalink() . '&vote=up'; ?>" class="">VoteUp</a>
+                    <div class="voting-form pull-right">
+                        <form method="post" />
+                            <input type="hidden" name="voting" />
+                            <input type="hidden" name="postId" value="<?php echo $current_post_id ?>"/>
+                            <div class=" glyphicon glyphicon-arrow-up"></div>
+                            <input type="submit" class="btn btn-link" name="voteUp" value="Up Vote"/>                                                   
+                            <div class=" glyphicon glyphicon-arrow-down"></div>
+                            <input type="submit" class="btn btn-link" name="voteDown" value="Dwon Vote"/>
+                        </form>      
                     </div>
-                    <div class="glyphicon glyphicon-arrow-down pull-right">
-                        <a href="<?php echo get_the_permalink() . '&vote=down'; ?>" class="">VoteDown</a>
-                    </div>                    
                     <div class="entry-meta">
                         <?php assignement_posted_on(); ?>
 

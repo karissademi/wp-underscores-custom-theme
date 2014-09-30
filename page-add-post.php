@@ -4,27 +4,27 @@
   <div class="form-group">
     <label for="inputTitle" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputTitle" name="postTitle" placeholder="Title of your post">
+      <input type="text" class="form-control" id="inputTitle" name="postTitle" placeholder="Title of your post" value="<?php echo $postTitle ?> "/>
     </div>
   </div>
   <div class="form-group">
     <label for="inputContent" class="col-sm-2 control-label">Content</label>
     <div class="col-sm-10">
-      <textarea class="form-control" name="postContent" rows="3"></textarea>
+      <textarea class="form-control" name="postContent" rows="3"><?php echo $postContent; ?></textarea>
     </div>
   </div>
   <div class="form-group"> 
     <label for="inputTag1" class="col-sm-2 control-label"></label>
     <div class="col-sm-10">
-        <input type="text" class="narrow" name="tag1" placeholder="Tag 1"/>
-        <input type="text" class="narrow" name="tag2" placeholder="Tag 2"/>
-        <input type="text" class="narrow" name="tag3" placeholder="Tag 3"/>
+        <input type="text" class="narrow" name="tag1" placeholder="Tag 1" value="<?php echo $tag1; ?>"/>
+        <input type="text" class="narrow" name="tag2" placeholder="Tag 2" value="<?php echo $tag2; ?>"/>
+        <input type="text" class="narrow" name="tag3" placeholder="Tag 3" value="<?php echo $tag3; ?>"/>
     </div>
   </div>
   <div class="form-group"> 
     <label for="inputTag1" class="col-sm-2 control-label"></label>
     <div class="col-sm-10">    
-        <input type="text" class="form-control pull-left narrow" placeholder="Pick an expiration date" name="exDate" id="chooseDate">
+        <input type="text" class="form-control pull-left narrow" placeholder="Pick an expiration date" name="exDate" id="chooseDate" value="<?php echo $postExpire; ?>">
         </div> 
     </div>
   <div class="form-group">
